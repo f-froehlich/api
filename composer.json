@@ -1,0 +1,52 @@
+{
+  "name": "f-froehlich/core-api",
+  "type": "symfony-bundle",
+  "description": "Provides API Operation",
+  "keywords": [],
+  "homepage": "https://f-froehlich.de",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Fabian Fröhlich",
+      "email": "mail@f-froehlich.de"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://nexus.f-froehlich.de/repository/composer/"
+    },
+    {
+      "packagist.org": false
+    }
+  ],
+  "require": {
+    "php": ">=7.2",
+    "ext-xml": "*",
+    "symfony/framework-bundle": "^4.4@dev"
+  },
+  "require-dev": {
+    "ext-xdebug": "*",
+    "symfony/phpunit-bridge": "^4.4@dev",
+    "phpunit/phpunit": "^8.5@dev"
+  },
+  "conflict": {
+  },
+  "suggest": {
+    "symfony/console": "For using the console commands"
+  },
+  "autoload": {
+    "psr-4": {
+      "FabianFroehlich\\Core\\Api\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FabianFroehlich\\Core\\Api\\Tests\\": "Tests/"
+    }
+  },
+  "minimum-stability": "dev"
+}

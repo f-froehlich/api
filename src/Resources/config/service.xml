@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="FabianFroehlich\Core\Api\Connection\ApiRequest">
+        </service>
+
+
+        <service id="FabianFroehlich\Core\Api\Service\AbstractValidatorService">
+        </service>
+
+        <service id="FabianFroehlich\Core\Api\Listener\ApiRequestListener">
+            <tag name="kernel.event_listener" event="kernel.controller_arguments" method="prepareRequest"/>
+            <tag name="kernel.event_listener" event="kernel.response" method="finishRequest"/>
+            <argument type="service" id="service_container"/>
+        </service>
+
+    </services>
+</container>
