@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FabianFroehlich\Api;
+namespace FabianFroehlich\Core\Api;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

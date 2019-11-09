@@ -23,7 +23,9 @@
   "require": {
     "php": ">=7.2",
     "ext-xml": "*",
-    "symfony/framework-bundle": "^4.4@dev"
+    "f-froehlich/core-exception": "*",
+    "symfony/framework-bundle": "^4.4@dev",
+    "ext-json": "*"
   },
   "require-dev": {
     "ext-xdebug": "*",

@@ -9,7 +9,6 @@
         <service id="FabianFroehlich\Core\Api\Connection\ApiRequest">
         </service>
 
-
         <service id="FabianFroehlich\Core\Api\Service\AbstractValidatorService">
         </service>
 

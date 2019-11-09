@@ -8,13 +8,11 @@ namespace FabianFroehlich\Core\Api\Listener;
 use FabianFroehlich\Core\Api\Connection\ApiRequest;
 use FabianFroehlich\Core\Api\Connection\ApiResponse;
 use FabianFroehlich\Core\Api\Controller\AbstractApiController;
-use FabianFroehlich\Core\Api\Controller\OptionsController;
 use FabianFroehlich\Core\Api\Exception\ApiException;
 use FabianFroehlich\Core\Api\Service\AbstractValidatorService;
 use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
-use function Symfony\Component\HttpFoundation\Request;
 
 class ApiRequestListener {
 
@@ -101,8 +99,7 @@ class ApiRequestListener {
     }
 
     /**
-     * @param Response $request ->getMethod()Event $event
-     *
+     * @param ResponseEvent $event
      * @throws ApiException
      */
     public function finishRequest(ResponseEvent $event) {
