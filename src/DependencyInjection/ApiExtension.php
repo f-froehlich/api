@@ -6,7 +6,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FabianFroehlich\Api\DependencyInjection;
+namespace FabianFroehlich\Core\Api\DependencyInjection;
 
 use Exception;
 use Symfony\Component\Config\FileLocator;
