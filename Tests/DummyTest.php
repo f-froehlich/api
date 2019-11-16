@@ -4,9 +4,10 @@
 namespace FabianFroehlich\Core\Api\Tests;
 
 
-use FabianFroehlich\Core\TestUtil\UnitTestCase;
 
-class DummyTest extends UnitTestCase
+use PHPUnit\Framework\TestCase;
+
+class DummyTest extends TestCase
 {
 
     /**
