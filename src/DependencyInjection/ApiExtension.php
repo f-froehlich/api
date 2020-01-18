@@ -1,9 +1,13 @@
 <?php
 /**
- * Copyright (c) 2019. Fabian Fröhlich <mail@f-froehlich.de>
+ * Copyright (c) 2020.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * Class ApiExtension.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
  */
 
 namespace FabianFroehlich\Core\Api\DependencyInjection;
@@ -21,8 +25,8 @@ use function dirname;
  *
  * @author Fabian Fröhlich <mail@f-froehlich.de>
  */
-class ApiExtension extends Extension
-{
+class ApiExtension
+    extends Extension {
 
     /**
      * Responds to the app.config configuration parameter.

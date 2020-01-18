@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  ~ Copyright (c) 2020.
+  ~
+  ~ Class phpunit.xml.dist
+  ~
+  ~ @author      Fabian Fröhlich <mail@f-froehlich.de>
+  ~
+  ~ @package     core-api
+  ~ @since       Sun, Jan 5, '20
+  -->
+
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.2/phpunit.xsd"
          backupGlobals="false"
@@ -9,9 +20,9 @@
          failOnWarning="true"
 >
     <php>
-        <ini name="error_reporting" value="-1" />
-        <env name="REDIS_HOST" value="localhost" />
-        <env name="MEMCACHED_HOST" value="localhost" />
+        <ini name="error_reporting" value="-1"/>
+        <env name="REDIS_HOST" value="localhost"/>
+        <env name="MEMCACHED_HOST" value="localhost"/>
     </php>
 
     <testsuites>

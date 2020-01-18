@@ -1,4 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2020.
+ *
+ * Class ApiResponse.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
+ */
+
 declare(strict_types=1);
 
 
@@ -15,7 +26,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @package FabianFroehlich\Core\Api\Connection
  */
-class ApiResponse extends JsonResponse {
+class ApiResponse
+    extends JsonResponse {
 
 
     use ApiTrait;

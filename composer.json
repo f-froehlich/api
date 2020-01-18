@@ -21,16 +21,16 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
+    "php": ">=7.1",
     "ext-xml": "*",
-    "f-froehlich/core-exception": "*",
-    "symfony/framework-bundle": "^4.4@dev",
+    "f-froehlich/core-exception": "^1",
+    "symfony/framework-bundle": "^4|^5",
     "ext-json": "*"
   },
   "require-dev": {
     "ext-xdebug": "*",
-    "symfony/phpunit-bridge": "^4.4@dev",
-    "phpunit/phpunit": "^8.5@dev"
+    "symfony/phpunit-bridge": "^4|^5",
+    "phpunit/phpunit": "^8"
   },
   "conflict": {
   },
@@ -49,6 +49,5 @@
     "psr-4": {
       "FabianFroehlich\\Core\\Api\\Tests\\": "Tests/"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }

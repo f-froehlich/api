@@ -1,4 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2020.
+ *
+ * Class ApiRequestListener.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
+ */
+
 declare(strict_types=1);
 
 
@@ -53,9 +64,9 @@ class ApiRequestListener {
         }
 
 
-        $method = $event->getController()[1];
+        $method         = $event->getController()[1];
         $validatorClass = $controller->getValidatorPrefix() . '\\' . ucfirst($method) . 'Validator';
-        $request = $event->getRequest();
+        $request        = $event->getRequest();
 
         if (!$this->container->has($validatorClass)) {
             throw new ApiException($validatorClass . ' Does not exist!', ApiException::VALIDATOR_NOT_EXIST, []);
@@ -68,7 +79,7 @@ class ApiRequestListener {
         $this->request = new ApiRequest();
 
 
-        $data = array_merge($request->request->all(), $request->query->all());
+        $data        = array_merge($request->request->all(), $request->query->all());
         $contentType = $request->getMimeType($request->getContentType());
 
         switch ($contentType) {
@@ -100,6 +111,7 @@ class ApiRequestListener {
 
     /**
      * @param ResponseEvent $event
+     *
      * @throws ApiException
      */
     public function finishRequest(ResponseEvent $event) {

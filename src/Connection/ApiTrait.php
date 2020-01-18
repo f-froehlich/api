@@ -1,4 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2020.
+ *
+ * Class ApiTrait.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
+ */
+
 declare(strict_types=1);
 
 
@@ -19,17 +30,17 @@ trait ApiTrait {
     /** @var AbstractValidatorService */
     private $validator;
 
+    public function getValidator(): AbstractValidatorService {
+
+        return $this->validator;
+    }
+
     /**
      * @param AbstractValidatorService $validator
      */
     public function setValidator(AbstractValidatorService $validator): void {
 
         $this->validator = $validator;
-    }
-
-    public function getValidator(): AbstractValidatorService {
-
-        return $this->validator;
     }
 
     /**

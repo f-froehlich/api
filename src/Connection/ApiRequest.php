@@ -1,4 +1,14 @@
 <?php
+/**
+ * Copyright (c) 2020.
+ *
+ * Class ApiRequest.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
+ */
 
 namespace FabianFroehlich\Core\Api\Connection;
 

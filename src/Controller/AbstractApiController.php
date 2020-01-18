@@ -1,4 +1,15 @@
 <?php
+/**
+ * Copyright (c) 2020.
+ *
+ * Class AbstractApiController.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
+ */
+
 declare(strict_types=1);
 /**
  * @author    Fabian Fröhlich <mail@f-froehlich.de>

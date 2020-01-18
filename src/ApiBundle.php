@@ -1,10 +1,14 @@
 <?php
 
 /**
- * Copyright (c) 2019. Fabian Fröhlich <mail@f-froehlich.de>
+ * Copyright (c) 2020.
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * Class ApiBundle.php
+ *
+ * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ *
+ * @package     core-api
+ * @since       Sun, Jan 5, '20
  */
 
 namespace FabianFroehlich\Core\Api;
@@ -17,6 +21,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */
-class ApiBundle extends Bundle {
+class ApiBundle
+    extends Bundle {
 
 }
