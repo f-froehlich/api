@@ -23,7 +23,7 @@
   "require": {
     "php": ">=7.1",
     "ext-xml": "*",
-    "f-froehlich/core-exception": "^1",
+    "f-froehlich/strict-validator": "^1",
     "symfony/framework-bundle": "^4|^5",
     "ext-json": "*"
   },
@@ -31,11 +31,6 @@
     "ext-xdebug": "*",
     "symfony/phpunit-bridge": "^4|^5",
     "phpunit/phpunit": "^8"
-  },
-  "conflict": {
-  },
-  "suggest": {
-    "symfony/console": "For using the console commands"
   },
   "autoload": {
     "psr-4": {

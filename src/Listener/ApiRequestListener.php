@@ -7,7 +7,7 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sun, Jan 5, '20
+ * @since       Sat, Jan 18, '20
  */
 
 declare(strict_types=1);
@@ -17,7 +17,7 @@ namespace FabianFroehlich\Core\Api\Listener;
 
 
 use FabianFroehlich\Core\Api\Connection\ApiRequest;
-use FabianFroehlich\Core\Api\Connection\ApiResponse;
+use FabianFroehlich\Core\Api\Connection\JsonApiResponse;
 use FabianFroehlich\Core\Api\Controller\AbstractApiController;
 use FabianFroehlich\Core\Api\Exception\ApiException;
 use FabianFroehlich\Core\Api\Service\AbstractValidatorService;
@@ -30,7 +30,7 @@ class ApiRequestListener {
     private $isApiRequest = false;
 
     /**
-     * @var ApiResponse
+     * @var JsonApiResponse
      */
     private $response;
 
@@ -100,7 +100,7 @@ class ApiRequestListener {
         $this->request->setValidator($validator);
         $this->request->validate();
 
-        $this->response = new ApiResponse();
+        $this->response = new JsonApiResponse();
         $this->response->setValidator($validator);
         $controller->setResponse($this->response);
         $controller->setRequest($this->request);

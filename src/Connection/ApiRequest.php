@@ -7,12 +7,10 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sun, Jan 5, '20
+ * @since       Sat, Jan 18, '20
  */
 
 namespace FabianFroehlich\Core\Api\Connection;
-
-use FabianFroehlich\Core\Api\Exception\ApiException;
 
 /**
  * Class ApiRequest
@@ -20,8 +18,6 @@ use FabianFroehlich\Core\Api\Exception\ApiException;
  * @package FabianFroehlich\Core\Api
  */
 class ApiRequest {
-
-    use ApiTrait;
 
     private $params;
 
@@ -39,20 +35,6 @@ class ApiRequest {
     public function setParams($params): void {
 
         $this->params = $params;
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    public function validate(): void {
-
-        $errors = $this->validator->validateRequest($this);
-        if (0 !== $errors->count()) {
-            // TODO
-            var_dump($errors);
-            throw new ApiException('Request is invalid!', ApiException::REQUEST_INVALID, []);
-        }
     }
 
 }

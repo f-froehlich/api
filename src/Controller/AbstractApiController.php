@@ -7,7 +7,7 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sun, Jan 5, '20
+ * @since       Sat, Jan 18, '20
  */
 
 declare(strict_types=1);
@@ -20,7 +20,8 @@ namespace FabianFroehlich\Core\Api\Controller;
 
 
 use FabianFroehlich\Core\Api\Connection\ApiRequest;
-use FabianFroehlich\Core\Api\Connection\ApiResponse;
+use FabianFroehlich\Core\Api\Connection\JsonApiResponse;
+use FabianFroehlich\Validator\Constraints\AbstractConstraint;
 
 /**
  * Class AbstractApiController
@@ -30,7 +31,7 @@ use FabianFroehlich\Core\Api\Connection\ApiResponse;
 abstract class AbstractApiController {
 
 
-    /** @var ApiResponse */
+    /** @var JsonApiResponse */
     protected $response;
 
     /** @var ApiRequest */
@@ -38,17 +39,17 @@ abstract class AbstractApiController {
 
 
     /**
-     * @return ApiResponse
+     * @return JsonApiResponse
      */
-    public function getResponse(): ApiResponse {
+    public function getResponse(): JsonApiResponse {
 
         return $this->response;
     }
 
     /**
-     * @param ApiResponse $response
+     * @param JsonApiResponse $response
      */
-    public function setResponse(ApiResponse $response): void {
+    public function setResponse(JsonApiResponse $response): void {
 
         $this->response = $response;
     }
@@ -70,18 +71,17 @@ abstract class AbstractApiController {
     }
 
     /**
-     * @return ApiResponse
+     * Get the constraint of the Request
+     *
+     * @return AbstractConstraint
      */
-    public function sendOptions(): ApiResponse {
-
-        return $this->response;
-    }
+    abstract public function getRequestConstraint(): AbstractConstraint;
 
     /**
-     * Gibt den DI Präfix des Validator zurück
+     * Get the constraint of the Request
      *
-     * @return string
+     * @return AbstractConstraint
      */
-    abstract public function getValidatorPrefix(): string;
+    abstract public function getResponseConstraint(): AbstractConstraint;
 
 }

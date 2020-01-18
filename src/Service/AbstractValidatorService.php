@@ -7,14 +7,14 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sun, Jan 5, '20
+ * @since       Sat, Jan 18, '20
  */
 
 namespace FabianFroehlich\Core\Api\Service;
 
 
 use FabianFroehlich\Core\Api\Connection\ApiRequest;
-use FabianFroehlich\Core\Api\Connection\ApiResponse;
+use FabianFroehlich\Core\Api\Connection\JsonApiResponse;
 
 abstract class AbstractValidatorService {
 
@@ -24,11 +24,11 @@ abstract class AbstractValidatorService {
      *
      *
      *
-     * @param ApiResponse $response
+     * @param JsonApiResponse $response
      *
      * @return bool
      */
-    abstract function validateResponse(ApiResponse $response): bool;
+    abstract function validateResponse(JsonApiResponse $response): bool;
 
     /**
      * Validiert den Request

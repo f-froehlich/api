@@ -2,12 +2,12 @@
 /**
  * Copyright (c) 2020.
  *
- * Class ApiResponse.php
+ * Class JsonApiResponse.php
  *
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sun, Jan 5, '20
+ * @since       Sat, Jan 18, '20
  */
 
 declare(strict_types=1);
@@ -17,7 +17,7 @@ namespace FabianFroehlich\Core\Api\Connection;
 
 
 use Exception;
-use FabianFroehlich\Core\Api\Exception\ApiException;
+use FabianFroehlich\Core\Api\Interfaces\ApiResponseInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 
@@ -26,11 +26,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  *
  * @package FabianFroehlich\Core\Api\Connection
  */
-class ApiResponse
-    extends JsonResponse {
-
-
-    use ApiTrait;
+class JsonApiResponse
+    extends JsonResponse
+    implements ApiResponseInterface {
 
     /**
      * @var array
@@ -64,18 +62,4 @@ class ApiResponse
 
         return $this->rawData;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function validate() {
-
-        $errors = $this->validator->validateResponse($this);
-        if (0 !== $errors->count()) {
-            // TODO
-            var_dump($errors);
-            throw new ApiException('Response is invalid!', ApiException::RESPONSE_INVALID, []);
-        }
-    }
-
 }
