@@ -8,7 +8,7 @@
   ~ @author      Fabian Fröhlich <mail@f-froehlich.de>
   ~
   ~ @package     core-api
-  ~ @since       Sun, Jan 5, '20
+  ~ @since       Sun, Jan 19, '20
   -->
 
 <container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -17,16 +17,12 @@
 
     <services>
 
-        <service id="FabianFroehlich\Core\Api\Connection\ApiRequest">
-        </service>
-
-        <service id="FabianFroehlich\Core\Api\Service\AbstractValidatorService">
-        </service>
 
         <service id="FabianFroehlich\Core\Api\Listener\ApiRequestListener">
             <tag name="kernel.event_listener" event="kernel.controller_arguments" method="prepareRequest"/>
             <tag name="kernel.event_listener" event="kernel.response" method="finishRequest"/>
-            <argument type="service" id="service_container"/>
+            <argument type="service" id="FabianFroehlich\Validator\Violation\DataConstraintViolationBuilder"/>
+            <argument type="service" id="monolog.logger_prototype"/>
         </service>
 
     </services>

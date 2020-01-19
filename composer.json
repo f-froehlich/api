@@ -24,12 +24,14 @@
     "php": ">=7.1",
     "ext-xml": "*",
     "f-froehlich/strict-validator": "^1",
+    "symfony/monolog-bundle": "^3.5",
     "symfony/framework-bundle": "^4|^5",
     "ext-json": "*"
   },
   "require-dev": {
     "ext-xdebug": "*",
     "symfony/phpunit-bridge": "^4|^5",
+    "dg/bypass-finals": "^1.1",
     "phpunit/phpunit": "^8"
   },
   "autoload": {

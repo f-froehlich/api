@@ -7,7 +7,7 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sat, Jan 18, '20
+ * @since       Sun, Jan 19, '20
  */
 
 declare(strict_types=1);
@@ -31,7 +31,7 @@ class JsonApiResponse
     implements ApiResponseInterface {
 
     /**
-     * @var array
+     * @var mixed
      */
     private $rawData;
 
@@ -55,10 +55,8 @@ class JsonApiResponse
 
     /**
      * Get the stored Data
-     *
-     * @return array
      */
-    public function getData(): array {
+    public function getData() {
 
         return $this->rawData;
     }

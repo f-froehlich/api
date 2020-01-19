@@ -8,14 +8,14 @@
   ~ @author      Fabian Fröhlich <mail@f-froehlich.de>
   ~
   ~ @package     core-api
-  ~ @since       Sun, Jan 5, '20
+  ~ @since       Sun, Jan 19, '20
   -->
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/5.2/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="vendor/autoload.php"
+         bootstrap="Tests/bootstrap.php"
          failOnRisky="true"
          failOnWarning="true"
 >

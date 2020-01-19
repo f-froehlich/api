@@ -7,7 +7,7 @@
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
  * @package     core-api
- * @since       Sat, Jan 18, '20
+ * @since       Sun, Jan 19, '20
  */
 
 declare(strict_types=1);
@@ -16,22 +16,24 @@ declare(strict_types=1);
  * @date      24.12.2018
  */
 
-namespace FabianFroehlich\Core\Api\Controller;
+namespace FabianFroehlich\Core\Api\Api;
 
 
 use FabianFroehlich\Core\Api\Connection\ApiRequest;
-use FabianFroehlich\Core\Api\Connection\JsonApiResponse;
+use FabianFroehlich\Core\Api\Interfaces\ApiResponseInterface;
 use FabianFroehlich\Validator\Constraints\AbstractConstraint;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * Class AbstractApiController
  *
  * @package FabianFroehlich\Core\Api\Controller
  */
-abstract class AbstractApiController {
+abstract class AbstractApiController
+    extends AbstractController {
 
 
-    /** @var JsonApiResponse */
+    /** @var ApiResponseInterface */
     protected $response;
 
     /** @var ApiRequest */
@@ -39,17 +41,17 @@ abstract class AbstractApiController {
 
 
     /**
-     * @return JsonApiResponse
+     * @return ApiResponseInterface
      */
-    public function getResponse(): JsonApiResponse {
+    public function getResponse(): ApiResponseInterface {
 
         return $this->response;
     }
 
     /**
-     * @param JsonApiResponse $response
+     * @param ApiResponseInterface $response
      */
-    public function setResponse(JsonApiResponse $response): void {
+    public function setResponse(ApiResponseInterface $response): void {
 
         $this->response = $response;
     }
