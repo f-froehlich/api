@@ -6,8 +6,8 @@
  *
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
- * @package     core-api
  * @since       Sun, Jan 19, '20
+ * @package     core-api
  */
 
 declare(strict_types=1);
@@ -58,6 +58,10 @@ class ApiRequestListener {
      * @var Logger
      */
     private $logger;
+    /**
+     * @var bool
+     */
+    private $isApiRequest = false;
 
     /**
      * ApiRequestListener constructor.
@@ -90,14 +94,15 @@ class ApiRequestListener {
         if (!$this->controller instanceof AbstractApiController) {
             return;
         }
-
-        $request       = $event->getRequest();
-        $data          = $this->checkRequest($request);
-        $this->request = new ApiRequest();
+        $this->isApiRequest = true;
+        $request            = $event->getRequest();
+        $data               = $this->checkRequest($request);
+        $this->request      = new ApiRequest();
         $this->request->setParams($data);
 
         $this->controller->setResponse($this->response);
         $this->controller->setRequest($this->request);
+
     }
 
     /**
@@ -107,7 +112,7 @@ class ApiRequestListener {
      */
     public function finishRequest(ResponseEvent $event): void {
 
-        if (!$event->isMasterRequest()) {
+        if (!$event->isMasterRequest() || !$this->isApiRequest) {
             return;
         }
 

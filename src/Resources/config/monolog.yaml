@@ -1,8 +1,0 @@
-monolog:
-  channels: ['api']
-  handlers:
-    api:
-      level:    debug
-      type:     stream
-      path:     '%kernel.logs_dir%/api.%kernel.environment%.log'
-      channels: [api]
