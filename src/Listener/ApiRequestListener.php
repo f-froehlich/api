@@ -94,14 +94,14 @@ class ApiRequestListener {
         if (!$this->controller instanceof AbstractApiController) {
             return;
         }
-        $this->isApiRequest = true;
-        $request            = $event->getRequest();
-        $data               = $this->checkRequest($request);
-        $this->request      = new ApiRequest();
+        $request       = $event->getRequest();
+        $data          = $this->checkRequest($request);
+        $this->request = new ApiRequest();
         $this->request->setParams($data);
 
         $this->controller->setResponse($this->response);
         $this->controller->setRequest($this->request);
+        $this->isApiRequest = true;
 
     }
 
@@ -112,7 +112,7 @@ class ApiRequestListener {
      */
     public function finishRequest(ResponseEvent $event): void {
 
-        if (!$event->isMasterRequest() || !$this->isApiRequest) {
+        if (!$this->isApiRequest || !$event->isMasterRequest()) {
             return;
         }
 
@@ -234,8 +234,8 @@ class ApiRequestListener {
      */
     private function validate(array $data, AbstractConstraint $constraint): array {
         $this->constraintViolationBuilder->reset();
-        return $this->constraintViolationBuilder->validateValue($data, $constraint)
-                                                ->getViolations();
+        $this->constraintViolationBuilder->validateValue($data, $constraint);
+        return $this->constraintViolationBuilder->getViolations();
     }
 
     /**

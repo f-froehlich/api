@@ -1,10 +1,10 @@
 {
-  "name": "f-froehlich/core-api",
+  "name": "f-froehlich/api",
   "type": "symfony-bundle",
   "description": "Provides API Operation",
   "keywords": [],
   "homepage": "https://f-froehlich.de",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "authors": [
     {
       "name": "Fabian Fröhlich",
@@ -15,15 +15,12 @@
     {
       "type": "composer",
       "url": "https://nexus.f-froehlich.de/repository/composer/"
-    },
-    {
-      "packagist.org": false
     }
   ],
   "require": {
     "php": ">=7.1",
     "ext-xml": "*",
-    "f-froehlich/strict-validator": "^1",
+    "f-froehlich/symfony-validator": "^1",
     "symfony/monolog-bundle": "^3.5",
     "symfony/framework-bundle": "^4|^5",
     "ext-json": "*"

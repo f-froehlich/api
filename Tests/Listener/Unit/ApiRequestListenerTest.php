@@ -6,8 +6,8 @@
  *
  * @author      Fabian Fröhlich <mail@f-froehlich.de>
  *
- * @package     core-api
  * @since       Sun, Jan 19, '20
+ * @package     core-api
  */
 
 namespace FabianFroehlich\Core\Api\Tests\Listener\Unit;
@@ -349,7 +349,7 @@ class ApiRequestListenerTest
         $this->violationBuilder->expects($this->once())
                                ->method('validateValue')
                                ->with($data, $constraint)
-                               ->willReturn($this->violationBuilder);
+                               ->willReturn(true);
         $this->violationBuilder->expects($this->once())
                                ->method('getViolations')
                                ->willReturn($violations);
@@ -387,9 +387,62 @@ class ApiRequestListenerTest
      * @test
      */
     public function finishRequestWillDoNothingIfIsNotTheMasterRequest(): void {
+
+        $listener = new ReflectionClass(ApiRequestListener::class);
+        $property = $listener->getProperty('isApiRequest');
+        $property->setAccessible(true);
+        $property->setValue($this->listener, true);
+
         $this->responseEvent->expects($this->once())
                             ->method('isMasterRequest')
                             ->willReturn(false);
+
+        $this->listener->finishRequest($this->responseEvent);
+
+    }
+
+    /**
+     * @test
+     */
+    public function finishRequestWillDoNothingIfResponseIsValid(): void {
+
+        $listener     = new ReflectionClass(ApiRequestListener::class);
+        $isApiRequest = $listener->getProperty('isApiRequest');
+        $isApiRequest->setAccessible(true);
+        $isApiRequest->setValue($this->listener, true);
+
+        $response = $listener->getProperty('response');
+        $response->setAccessible(true);
+        $response->setValue($this->listener, $this->response);
+
+        $controller = $listener->getProperty('controller');
+        $controller->setAccessible(true);
+        $controller->setValue($this->listener, $this->controller);
+
+
+        $this->responseEvent->expects($this->once())
+                            ->method('isMasterRequest')
+                            ->willReturn(true);
+        $this->responseEvent->expects($this->once())
+                            ->method('getResponse')
+                            ->willReturn($this->response);
+        $this->responseEvent->expects($this->once())
+                            ->method('getRequest')
+                            ->willReturn($this->request);
+        $this->response->expects($this->once())
+                       ->method('getData')
+                       ->willReturn([]);
+        $this->controller->expects($this->once())
+                         ->method('getResponseConstraint')
+                         ->willReturn(new IsBool());
+
+        $this->violationBuilder->expects($this->once())
+                               ->method('validateValue')
+                               ->willReturn(true);
+
+        $this->violationBuilder->expects($this->once())
+                               ->method('getViolations')
+                               ->willReturn([]);
 
         $this->listener->finishRequest($this->responseEvent);
 
