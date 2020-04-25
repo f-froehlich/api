@@ -1,13 +1,27 @@
 <?php
 /**
- * Copyright (c) 2020.
+ * API
  *
- * Class ApiRequestListener.php
+ * API Extension for validating each Request
  *
- * @author      Fabian Fröhlich <mail@f-froehlich.de>
+ * Copyright (c) 2020 Fabian Fröhlich <mail@f-froehlich.de> https://f-froehlich.de
  *
- * @since       Sun, Jan 19, '20
- * @package     core-api
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *
+ * For all license terms see README.md and LICENSE Files in root directory of this Project.
+ *
  */
 
 declare(strict_types=1);
@@ -106,66 +120,6 @@ class ApiRequestListener {
     }
 
     /**
-     * @param ResponseEvent $event
-     *
-     * @throws ApiResponseException
-     */
-    public function finishRequest(ResponseEvent $event): void {
-
-        if (!$this->isApiRequest || !$event->isMasterRequest()) {
-            return;
-        }
-
-        $this->abortResponseIfModified($event);
-        $this->validateResponse($event->getRequest());
-
-    }
-
-    /**
-     * Abort the Request if Controller returned not the provided response Object
-     *
-     * @param ResponseEvent $event
-     *
-     * @throws ApiResponseException
-     */
-    private function abortResponseIfModified(ResponseEvent $event): void {
-        if ($this->response !== $event->getResponse()) {
-            $event->stopPropagation();
-
-            $this->logger->debug(
-                'You have to use $this->response instead of other creating a new Response Object. Aborting Request'
-            );
-            throw new ApiResponseException('Illegal Response Modification detected!');
-        }
-    }
-
-    /**
-     * Validate the Response. If Invalid throw exception
-     *
-     * @param Request $request
-     *
-     * @throws ApiResponseException
-     */
-    private function validateResponse(Request $request): void {
-        $violations = $this->validate($this->response->getData(), $this->controller->getResponseConstraint());
-
-        if (0 !== count($violations)) {
-
-            $message = "Invalid API Response detected! Aborting Request.\n\tViolations:\n"
-                       . $this->getLoggingMessage($this->response->getData(), $violations, $request);
-
-            $this->logger->debug($message);
-            $this->logger->debug(
-                "Response does not match expected Constraints in Controller: '"
-                . get_class($this->controller)
-                . "'. Have the Definition changed?"
-            );
-
-            throw new ApiResponseException('Response is invalid.');
-        }
-    }
-
-    /**
      * Validate the request
      *
      * @param Request $request
@@ -261,6 +215,66 @@ class ApiRequestListener {
         $message .= "\tIps: [" . $request->getClientIp() . '] ' . implode(', ', $request->getClientIps());
 
         return $message;
+    }
+
+    /**
+     * @param ResponseEvent $event
+     *
+     * @throws ApiResponseException
+     */
+    public function finishRequest(ResponseEvent $event): void {
+
+        if (!$this->isApiRequest || !$event->isMasterRequest()) {
+            return;
+        }
+
+        $this->abortResponseIfModified($event);
+        $this->validateResponse($event->getRequest());
+
+    }
+
+    /**
+     * Abort the Request if Controller returned not the provided response Object
+     *
+     * @param ResponseEvent $event
+     *
+     * @throws ApiResponseException
+     */
+    private function abortResponseIfModified(ResponseEvent $event): void {
+        if ($this->response !== $event->getResponse()) {
+            $event->stopPropagation();
+
+            $this->logger->debug(
+                'You have to use $this->response instead of other creating a new Response Object. Aborting Request'
+            );
+            throw new ApiResponseException('Illegal Response Modification detected!');
+        }
+    }
+
+    /**
+     * Validate the Response. If Invalid throw exception
+     *
+     * @param Request $request
+     *
+     * @throws ApiResponseException
+     */
+    private function validateResponse(Request $request): void {
+        $violations = $this->validate($this->response->getData(), $this->controller->getResponseConstraint());
+
+        if (0 !== count($violations)) {
+
+            $message = "Invalid API Response detected! Aborting Request.\n\tViolations:\n"
+                       . $this->getLoggingMessage($this->response->getData(), $violations, $request);
+
+            $this->logger->debug($message);
+            $this->logger->debug(
+                "Response does not match expected Constraints in Controller: '"
+                . get_class($this->controller)
+                . "'. Have the Definition changed?"
+            );
+
+            throw new ApiResponseException('Response is invalid.');
+        }
     }
 
 }
