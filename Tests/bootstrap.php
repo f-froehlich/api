@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * API
  *
  * API Extension for validating each Request

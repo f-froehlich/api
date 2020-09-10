@@ -14,7 +14,7 @@
   "repositories": [
     {
       "type": "composer",
-      "url": "https://nexus.f-froehlich.de/repository/composer/"
+      "url": "https://nexus.dev.f-froehlich.de/repository/composer-group/"
     }
   ],
   "require": {
