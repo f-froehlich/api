@@ -34,6 +34,7 @@ namespace FabianFroehlich\Core\Api\Connection;
 class ApiRequest {
 
     private $params;
+    private $origRequest;
 
     /**
      * @return mixed
@@ -49,6 +50,20 @@ class ApiRequest {
     public function setParams($params): void {
 
         $this->params = $params;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrigRequest() {
+        return $this->origRequest;
+    }
+
+    /**
+     * @param mixed $origRequest
+     */
+    public function setOrigRequest($origRequest): void {
+        $this->origRequest = $origRequest;
     }
 
 }

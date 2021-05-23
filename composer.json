@@ -11,12 +11,6 @@
       "email": "mail@f-froehlich.de"
     }
   ],
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://nexus.dev.f-froehlich.de/repository/composer-group/"
-    }
-  ],
   "require": {
     "php": ">=7.1",
     "ext-xml": "*",

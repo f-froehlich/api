@@ -112,6 +112,7 @@ class ApiRequestListener {
         $data          = $this->checkRequest($request);
         $this->request = new ApiRequest();
         $this->request->setParams($data);
+        $this->request->setOrigRequest($request);
 
         $this->controller->setResponse($this->response);
         $this->controller->setRequest($this->request);
@@ -207,7 +208,7 @@ class ApiRequestListener {
             $message .= "\t\t" . $violation->getPropertyPath()
                         . "\t" . $violation->getCode()
                         . "\t" . $violation->getMessage()
-                        . "\t" . $violation->getInvalidValue();
+                        . "\t" . serialize($violation->getInvalidValue());
         }
 
         $message .= "\tData: " . implode(', ', $data);
